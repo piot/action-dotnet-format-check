@@ -1,0 +1,28 @@
+{
+  "name": "action-dotnet-format-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piot/action-dotnet-format-check.git"
+  },
+  "author": "Peter Bjorklund",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piot/action-dotnet-format-check/issues"
+  },
+  "homepage": "https://github.com/piot/action-dotnet-format-check#readme",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/exec": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.8",
+    "typescript": "^3.6.3"
+  }
+}

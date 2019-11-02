@@ -1,0 +1,10 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'Dotnet Format Check'
+description: 'Github Action for a dotnet format check'
+author: 'piot'
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
+branding:
+  color: 'green'
+  icon: 'package'
