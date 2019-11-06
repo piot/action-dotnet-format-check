@@ -3,11 +3,13 @@ import * as exec from '@actions/exec';
 import * as os from 'os';
 import * as path from 'path';
 
-async function check() : Promise<number> {
-  const workspace = 'src/'
-
+async function check(): Promise<number> {
+  let workspace = core.getInput("workspace")
+  if (workspace == '') {
+    workspace = 'src/'
+  }
   core.info(`Performing a dotnet format check on '${workspace}'`);
-  
+
   // Dotnet format is now executed using the old format and directly form tool path
   // since `dotnet format` report the following error:
   //
