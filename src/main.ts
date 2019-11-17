@@ -4,11 +4,20 @@ import * as os from 'os';
 import * as path from 'path';
 
 async function check(): Promise<number> {
-  let workspace = core.getInput("workspace")
-  if (workspace == '') {
-    workspace = 'src/'
+  let directory = core.getInput('path')
+  let locationType = 'folder'
+  let location = directory
+  if (directory == '') {
+    locationType = 'workspace'
+    let workspace = core.getInput('workspace')
+    if (workspace == '') {
+      workspace = 'src/'
+    }
+    location = workspace
+    core.info(`Performing a dotnet format check on '${location}'`);
+  } else {
+    core.info(`Performing a dotnet format check on folder '${location}'`);
   }
-  core.info(`Performing a dotnet format check on '${workspace}'`);
 
   // Dotnet format is now executed using the old format and directly form tool path
   // since `dotnet format` report the following error:
@@ -18,7 +27,7 @@ async function check(): Promise<number> {
 
   const toolsPath = path.join(os.homedir(), '.dotnet/tools')
   const dotnetFormatExecutable = path.join(toolsPath, 'dotnet-format')
-  const execString = `${dotnetFormatExecutable} --check --dry-run --verbosity diag --workspace ${workspace}`
+  const execString = `${dotnetFormatExecutable} --check --dry-run --verbosity diag --${locationType} ${location}`
 
   return exec.exec(execString)
 }
